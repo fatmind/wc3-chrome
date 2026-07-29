@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "wc3",
+  "version": "0.6.0",
+  "description": "让 AI 帮你操作浏览器：自动打开网页、点击、发内容、回复、聊天、抓取信息，把重复的网上操作交给它，你去喝咖啡。",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "tabs",
+    "tabGroups",
+    "scripting",
+    "storage",
+    "alarms",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["accessibility-tree.js", "page-bridge.js", "visual-indicator.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
