@@ -1,6 +1,6 @@
 # wc3-chrome
 
-> webclaw3 平台的 L0 浏览器插件。MV3 Chrome 扩展，浏览器操作的执行端：通过 WebSocket 接受 relay 转发的 op 指令，调 `chrome.*` API 操作真实 Chrome。
+> webclaw3 平台的 L0 浏览器插件，浏览器操作的执行端：通过 WebSocket 接受 relay 转发的 op 指令，调 `chrome.*` API 操作真实 Chrome。
 
 ---
 
@@ -22,7 +22,7 @@
 wc3-chrome/
 ├── README.md                       本文件
 ├── package.json
-├── extension/                      Chrome 扩展（MV3，v0.5.0）
+├── extension/                      Chrome 扩展（MV3，v0.6.0）
 │   ├── manifest.json
 │   ├── background.js               service worker：WS 连接、消息路由、Tab Group、visual indicator
 │   ├── accessibility-tree.js       content script：aria tree + ref_N 寻址
