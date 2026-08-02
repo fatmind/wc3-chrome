@@ -6,9 +6,9 @@
 
 ## 角色
 
-`wc3-chrome` 是 webclaw3 架构的 L0 层——**浏览器插件本身**。它被 `wc3-ranger`（L1 skill）以及 dist 出的业务 skill 经 relay 调用。
+`wc3-chrome` 是 webclaw3 架构的 L0 层——**浏览器插件本身**。它被 `webclaw3`（L1 skill）以及 dist 出的业务 skill 经 relay 调用。
 
-它只是 Chrome 扩展，**不含 relay、不含任何 Node 进程**。连接它（HTTP↔WS 桥接 relay、CDP 代理、启停脚本）的连接层住在 `wc3-ranger/scripts/`，属于 wc3-ranger 的组成部分。二者关系：**插件在 wc3-chrome，连接插件的手臂在 wc3-ranger**。
+它只是 Chrome 扩展，**不含 relay、不含任何 Node 进程**。连接它（HTTP↔WS 桥接 relay、CDP 代理、启停脚本）的连接层住在 `webclaw3/scripts/`，属于 webclaw3 的组成部分。二者关系：**插件在 wc3-chrome，连接插件的手臂在 webclaw3**。
 
 架构位置与分层关系见 [webclaw3 主设计文档](https://github.com/fatmind/webclaw3/blob/main/spec/webclaw3_design.md) 的「分层」节。
 
@@ -32,7 +32,7 @@ wc3-chrome/
 └── poc/                            验证脚本（relay 连通性、真实站点、CSP 绕过等）
 ```
 
-> relay / cdp-proxy / wc3-ranger 等连接进程**不在这里**，在 `wc3-ranger/scripts/`。
+> relay / cdp-proxy / webclaw3 等连接进程**不在这里**，在 `webclaw3/scripts/`。
 
 ---
 
@@ -40,13 +40,13 @@ wc3-chrome/
 
 **加载扩展**：Chrome 开发者模式加载 `wc3-chrome/extension/`（一次即可）。
 
-**启动连接它的 relay**：由 wc3-ranger 的连接层提供，经 `wc3-ranger`（位于 `wc3-ranger/scripts/wc3-ranger.mjs`）启停：
+**启动连接它的 relay**：由 webclaw3 的连接层提供，经 `webclaw3`（位于 `webclaw3/scripts/webclaw3.mjs`）启停：
 
 ```bash
-wc3-ranger start     # 后台启动 relay，端口 3459
-wc3-ranger status    # 检查端口监听 + 扩展 active
-wc3-ranger stop      # 杀进程
-wc3-ranger restart   # stop + start
+webclaw3 start     # 后台启动 relay，端口 3459
+webclaw3 status    # 检查端口监听 + 扩展 active
+webclaw3 stop      # 杀进程
+webclaw3 restart   # stop + start
 ```
 
 ---
@@ -76,7 +76,7 @@ wc3-ranger restart   # stop + start
 
 ## 历史
 
-- v0.5.0：从 wc3-ranger 仓库拆出（2026-07）。原 wc3-ranger 既含浏览器探索 SKILL.md（L1）又含 Chrome 扩展（L0）。拆出后：**wc3-chrome = 纯扩展（L0）**；wc3-ranger = 浏览 skill（L1，SKILL.md）+ 连接层（`scripts/`：relay/cdp-proxy/wc3-ranger）。连接进程留在 wc3-ranger，因为它们是 skill 触达浏览器的手臂。
+- v0.5.0：从 webclaw3 仓库拆出（2026-07）。原 webclaw3 既含浏览器探索 SKILL.md（L1）又含 Chrome 扩展（L0）。拆出后：**wc3-chrome = 纯扩展（L0）**；webclaw3 = 浏览 skill（L1，SKILL.md）+ 连接层（`scripts/`：relay/cdp-proxy/webclaw3）。连接进程留在 webclaw3，因为它们是 skill 触达浏览器的手臂。
 
 ---
 

@@ -71,7 +71,7 @@ async function main() {
     section('0. Check relay');
     const status = await (await fetch(`${RELAY_URL}/api/status`)).json();
     if (!status.extensionConnected) {
-      console.log('[FAIL] Extension not connected. Run: node wc3-ranger/scripts/wc3-ranger.mjs start');
+      console.log('[FAIL] Extension not connected. Run: node webclaw3/scripts/webclaw3.mjs start');
       process.exit(1);
     }
     console.log('[OK] Extension connected');
