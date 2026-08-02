@@ -3,6 +3,10 @@
   "version": "0.6.0",
   "description": "webclaw3 L0 - Chrome 扩展（浏览器端组件，配合 webclaw3 使用）",
   "type": "module",
+  "scripts": {
+    "pack": "node build/pack-extension.mjs",
+    "publish:skill": "node build/pack-extension.mjs --publish"
+  },
   "engines": {
     "node": ">=22"
   },
