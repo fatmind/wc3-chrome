@@ -29,9 +29,9 @@ mkdirSync(DIST, { recursive: true });
 rmSync(join(DIST, ZIP), { force: true });
 
 // 进入 extension/ 打包，使 zip 内根直接是 manifest.json（解压即得可加载目录）。
-// 排除：隐藏文件（.DS_Store 等）+ 商店素材（store.jpeg / store-* 截图与商店图标）
-// + manifest 未引用的 icon.png——开发者模式加载只需 manifest 声明的 icon16/48/128 与运行时脚本。
-run(`zip -r -q "${join(DIST, ZIP)}" . -x ".*" -x "icons/store.jpeg" -x "icons/store-*" -x "icons/icon.png"`, EXT_DIR);
+// extension/ 现只含运行时脚本 + manifest + manifest 引用的 icon16/48/128（商店素材已移出到 assets/），
+// 故只排除隐藏文件（.DS_Store 等）即可。
+run(`zip -r -q "${join(DIST, ZIP)}" . -x ".*"`, EXT_DIR);
 console.log(`✔ 打包完成: dist/${ZIP}  (manifest v${version})`);
 
 // ── 发布到 skill 仓库（仅 --publish）──
